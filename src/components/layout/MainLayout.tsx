@@ -1,14 +1,17 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import Head from 'next/head';
 
 interface IMainLayout {
   children: React.ReactNode;
+  head: string;
 }
 
-const MainLayout = ({ children }: IMainLayout) => {
+const MainLayout = ({ children, head }: IMainLayout) => {
   return (
     <>
+      <Head>{head}</Head>
       <Header />
       {children}
       <Footer />

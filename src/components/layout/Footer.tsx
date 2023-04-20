@@ -12,24 +12,24 @@ import {
 const Contact = [
   {
     url: 'mailto:rizkramdhanx@gmail.com',
-    icon: <AiOutlineMail size={30} />,
+    icon: <AiOutlineMail size={30} className="hover:text-orange-500" />,
   },
   {
     url: 'https://github.com/rizkiramadhanx',
-    icon: <AiFillGithub size={30} />,
+    icon: <AiFillGithub size={30} className="hover:text-orange-500" />,
   },
   {
     url: 'https://linkedin.com/in/rizkiramadhanx',
-    icon: <AiFillLinkedin size={30} />,
+    icon: <AiFillLinkedin size={30} className="hover:text-orange-500" />,
   },
   {
     url: 'https://instagram.com/rizkiramadhanx/',
-    icon: <AiFillInstagram size={30} />,
+    icon: <AiFillInstagram size={30} className="hover:text-orange-500" />,
   },
 ];
 const Footer = () => {
   return (
-    <footer className="shadow-[1px_1px_1px_0_rgba(0,0,0,0.3)] shadow-black dark:shadow-white">
+    <footer className="shadow-md shadow-black dark:shadow-white">
       <div
         className={clsxm(
           styles.container,

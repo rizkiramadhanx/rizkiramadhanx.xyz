@@ -15,7 +15,7 @@ export default function ThemeButton({ className, ...rest }: ThemeButtonProps) {
     <button
       className={clsx(
         'rounded-md p-2 focus:outline-none md:p-2.5',
-        'border border-white dark:border-gray-600',
+        'border border-gray-300 dark:border-gray-600',
         'text-lg md:text-xl',
         className
       )}

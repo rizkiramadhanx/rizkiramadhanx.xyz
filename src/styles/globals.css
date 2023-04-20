@@ -7,3 +7,60 @@
     @apply hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br from-pink-400 to-green-600;
   }
 }
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+@layer components {
+  .text-underline {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .text-underline:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #cf481f;
+    transition: transform 0.2s;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .text-underline:hover:after {
+    transform: scaleX(1);
+  }
+}
+
+.text-gradient {
+  background: #cf481f;
+  background: linear-gradient(to right, #cf481f 25%, #5a00cf 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-sm {
+  background: #cf481f;
+  background: linear-gradient(to right, #cf481f 10%, #5a00cf 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.button-shadow-gradient {
+  box-shadow: #cf481f 0px 0px 1px, rgba(0, 0, 0, 0.12) 0px -6px 10px,
+    #5a00cf 0px 4px 6px, #cf481f 0px 1px 13px, #5a00cf 0px -3px 5px;
+}
+
+.button-shadow-gradient-hover:hover {
+  box-shadow: #cf481f 0px 0px 1px, rgba(0, 0, 0, 0.12) 0px -6px 10px,
+    #5a00cf 0px 4px 6px, #cf481f 0px 1px 13px, #5a00cf 0px -3px 5px;
+}

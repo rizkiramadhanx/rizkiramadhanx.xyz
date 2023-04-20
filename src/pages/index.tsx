@@ -1,12 +1,14 @@
 import MainLayout from '@/components/layout/MainLayout';
 import clsxm from '@/libs/clsxm';
 import styles from '@/styles/styles';
+import Head from 'next/head';
 import { Typewriter } from 'react-simple-typewriter';
 
 export default function Home() {
   return (
-    <MainLayout>
+    <MainLayout head="Home | rizkiramadhanx">
       <div
+        data-aos="fade-up"
         className={clsxm(
           'min-h-[calc(100vh_-_64px)] ',
           'bg-main dark:bg-mainDark',
@@ -16,10 +18,10 @@ export default function Home() {
         )}
       >
         <div className="flex flex-col gap-y-3 justify-center">
-          <h1 className="text-3xl font-bold">Hello, Morning spirit 😎</h1>
+          <h1 className="text-3xl font-bold">Hello,</h1>
           <h1 className="text-5xl font-bold">
-            My Name is
-            <span>
+            I am
+            <span className="text-gradient bg-slate-400">
               {' '}
               <Typewriter
                 words={['Rizki Ramadhan']}
@@ -33,13 +35,13 @@ export default function Home() {
             </span>
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
-            tempora velit dolorem sed illum quisquam quaerat autem. Atque
-            adipisci labore quibusdam eius nihil. Deleniti aut, assumenda fugit
-            soluta adipisci hic.
+            Final semester student, interested in Web Development. currently
+            looking for an job especially as a NodeJS Environment Developer. I
+            am currently learning Javascript Environment, be it FrontEnd or
+            BackEnd litte bit.
           </p>
           <div>
-            <button className="bg-slate-200 p-2 rounded-[2px]">
+            <button className="bg-main dark:bg-mainDark mt-2 p-2 rounded-[2px] button-shadow-gradient">
               Download CV
             </button>
           </div>

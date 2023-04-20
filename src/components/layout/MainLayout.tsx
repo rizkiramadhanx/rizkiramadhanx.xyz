@@ -10,7 +10,7 @@ const MainLayout = ({ children }: IMainLayout) => {
   return (
     <>
       <Header />
-      <div className="min-h-[calc(100vh_-_64px)]">{children}</div>
+      {children}
       <Footer />
     </>
   );

@@ -6,8 +6,13 @@ import ThemeButton from '@/components/button/ThemeButton';
 
 const Header = () => {
   return (
-    <nav className="shadow-sm dark:shadow-white">
-      <div className={clsxm('accent-amber-200 h-16', styles.container)}>
+    <nav
+      className={clsxm(
+        'shadow-[1px_1px_0_0_rgba(0,0,0,0.3)] backdrop-blur-md  bg-opacity-20 shadow-black bg-main',
+        'dark:shadow-white sticky z-10 top-0 dark:bg-mainDark'
+      )}
+    >
+      <div className={clsxm('h-16', styles.container)}>
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center">
             <div className="hidden sm:inline font-bold text-lg">

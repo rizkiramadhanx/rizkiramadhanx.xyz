@@ -29,21 +29,28 @@ const Contact = [
 ];
 const Footer = () => {
   return (
-    <footer
-      className={clsxm(styles.container, 'h-16 shadow-sm dark:shadow-white')}
-    >
-      <div className="flex gap-x-3 items-center h-full">
-        {Contact.map((data, key) => (
-          <Link
-            key={key}
-            href={data.url}
-            passHref={true}
-            className="hover-effect"
-            target="_blank"
-          >
-            {data.icon}
-          </Link>
-        ))}
+    <footer className="shadow-[1px_1px_1px_0_rgba(0,0,0,0.3)] shadow-black dark:shadow-white">
+      <div
+        className={clsxm(
+          styles.container,
+          'h-16',
+          'flex justify-between items-center'
+        )}
+      >
+        <div className="flex gap-x-2 items-center h-full">
+          {Contact.map((data, key) => (
+            <Link
+              key={key}
+              href={data.url}
+              passHref={true}
+              className="hover-effect"
+              target="_blank"
+            >
+              {data.icon}
+            </Link>
+          ))}
+        </div>
+        <div> &#169; rizkiramadhanx</div>
       </div>
     </footer>
   );

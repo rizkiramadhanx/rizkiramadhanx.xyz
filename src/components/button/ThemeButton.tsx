@@ -15,9 +15,7 @@ export default function ThemeButton({ className, ...rest }: ThemeButtonProps) {
     <button
       className={clsx(
         'rounded-md p-2 focus:outline-none md:p-2.5',
-        'border dark:border-gray-600',
-        'hover:border-primary-300 hover:text-primary-300 dark:hover:border-primary-300 dark:hover:text-primary-300',
-        'focus-visible:border-primary-300 focus-visible:text-primary-300 dark:focus-visible:border-primary-300 dark:focus-visible:text-primary-300',
+        'border border-white dark:border-gray-600',
         'text-lg md:text-xl',
         className
       )}

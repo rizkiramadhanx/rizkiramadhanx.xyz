@@ -25,6 +25,7 @@ const Project = () => {
   return (
     <MainLayout head="Project | rizkiramadhanx">
       <div
+        data-aos="fade-up"
         className={clsxm(
           'min-h-[calc(100vh_-_64px)] ',
           'bg-main dark:bg-mainDark',
@@ -47,7 +48,7 @@ const Project = () => {
         </div>
         <div className="mt-5 text-right mb-2 text-sm">
           Last update{' '}
-          <span className="text-gradient-sm dark:text-white">
+          <span className="text-gradient-sm dark:text-white font-bold">
             {moment(dateLastCommit).format('LLLL')}
           </span>
         </div>

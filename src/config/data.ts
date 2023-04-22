@@ -1,4 +1,6 @@
 import Suxz from '@/assets/project/Suxz-landing-page.png';
+import QuranApp from '@/assets/project/Quran.png';
+import Dekoor from '@/assets/project/Dekoor.png';
 
 const data = {
   project: {
@@ -11,6 +13,25 @@ const data = {
         url: {
           deploy: 'https://suxz-codedesign-zeta.vercel.app/',
           source: 'https://github.com/rizkiramadhanx/suxz-codedesign',
+        },
+      },
+      {
+        description: `The Quran App is a pocket Quran application that is simple and easy for Muslims to read the Quran anywhere and anytime.`,
+        image: QuranApp,
+        technology: ['React', 'Tailwind', 'API'],
+        title: 'The Quran App',
+        url: {
+          deploy: 'https://quran-rizkiramadhanx.vercel.app/',
+          source: 'https://github.com/rizkiramadhanx/quran-app-react',
+        },
+      },
+      {
+        description: `Dekoor is a web application that provides quality furniture`,
+        image: Dekoor,
+        technology: ['React', 'Tailwind'],
+        title: 'Dekoor Landing Page',
+        url: {
+          deploy: 'https://dekoor-theta.vercel.app/',
         },
       },
     ],

@@ -44,13 +44,16 @@ const ProjectCard = ({
       <Image
         src={image}
         className="w-full h-[180px] object-cover rounded-md my-1"
-        alt="random"
+        alt={title}
         width={300}
         height={300}
       />
       <div className="flex gap-x-1 text-sm mt-2">
         {technology.map((data, key) => (
-          <span className="px-2 py-1 bg-white rounded-md text-black" key={key}>
+          <span
+            className="px-2 py-1 dark:bg-white bg-slate-100 rounded-md text-black"
+            key={key}
+          >
             #{data}
           </span>
         ))}

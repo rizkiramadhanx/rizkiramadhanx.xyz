@@ -1,6 +1,7 @@
 import Suxz from '@/assets/project/Suxz-landing-page.png';
 import QuranApp from '@/assets/project/Quran.png';
 import Dekoor from '@/assets/project/Dekoor.png';
+import Pahein from '@/assets/project/Pahein.png';
 
 const data = {
   project: {
@@ -13,6 +14,15 @@ const data = {
         url: {
           deploy: 'https://suxz-codedesign-zeta.vercel.app/',
           source: 'https://github.com/rizkiramadhanx/suxz-codedesign',
+        },
+      },
+      {
+        description: `Pahe.in is a popular website that provides users with a wide range of free movies, TV shows, and other entertainment content that can be downloaded or streamed online. It was established in Indonesia and became a popular platform for fans of movies and TV shows to watch and download their favorite content.`,
+        image: Pahein,
+        technology: ['React', 'Chakra', 'Public API'],
+        title: 'Pahe.in: Movie App',
+        url: {
+          deploy: 'https://pahein.rizkiramadhanx.dev/',
         },
       },
       {

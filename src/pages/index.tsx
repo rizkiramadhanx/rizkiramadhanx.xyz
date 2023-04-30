@@ -1,8 +1,9 @@
 import MainLayout from '@/components/layout/MainLayout';
 import clsxm from '@/libs/clsxm';
 import styles from '@/styles/styles';
-import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { Typewriter } from 'react-simple-typewriter';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -41,9 +42,14 @@ export default function Home() {
             BackEnd litte bit.
           </p>
           <div>
-            <button className="bg-main dark:bg-mainDark mt-2 p-2 rounded-[2px] button-shadow-gradient">
-              Download CV
-            </button>
+            <Link
+              href="https://s3-ap-southeast-1.amazonaws.com/glints-dashboard/resume/ea5983397f65507b6d80fa1e51360413.pdf"
+              target="_blank"
+            >
+              <button className="bg-main dark:bg-mainDark mt-2 p-2 rounded-[2px] button-shadow-gradient">
+                Download CV
+              </button>
+            </Link>
           </div>
         </div>
       </div>

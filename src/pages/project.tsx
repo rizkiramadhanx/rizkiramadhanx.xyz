@@ -17,7 +17,7 @@ const Project = () => {
     error,
     isLoading,
   } = useSWR(
-    'https://api.github.com/repos/rizkiramadhanx/interview-coding-azura-labs/branches/master'
+    'https://api.github.com/repos/rizkiramadhan/rizkiramadhanx.xyz/branches/main'
   );
 
   const dateLastCommit = repodata?.commit?.commit?.committer?.date;

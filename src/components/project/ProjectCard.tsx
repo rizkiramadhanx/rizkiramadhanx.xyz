@@ -33,7 +33,6 @@ const ProjectCard = ({
   return (
     <div
       className={clsxm(
-        'h-[370px]',
         'rounded-md border border-gray-300 dark:border-white p-2',
         'hover:scale-105 hover:z-2 bg-main dark:bg-mainDark transition-all',
         mounted && (theme === 'dark' ? 'button-shadow-gradient-hover' : '')

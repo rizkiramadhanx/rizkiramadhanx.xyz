@@ -11,7 +11,9 @@ interface IMainLayout {
 const MainLayout = ({ children, head }: IMainLayout) => {
   return (
     <>
-      <Head>{head}</Head>
+      <Head>
+        <title>{head}</title>
+      </Head>
       <Header />
       {children}
       <Footer />

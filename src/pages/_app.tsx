@@ -26,6 +26,8 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, []);
 
+  NProgress.configure({ showSpinner: false });
+
   useEffect(() => {
     const handleRouteStart = () => {
       NProgress.start();

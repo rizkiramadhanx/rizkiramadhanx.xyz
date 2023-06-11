@@ -1,30 +1,30 @@
-import clsxm from '@/libs/clsxm';
-import styles from '@/styles/styles';
-import Link from 'next/link';
-import React from 'react';
+import clsxm from "@/libs/clsxm";
+import styles from "@/styles/styles";
+import Link from "next/link";
+import React from "react";
 import {
   AiFillGithub,
   AiFillLinkedin,
   AiFillInstagram,
   AiOutlineMail,
-} from 'react-icons/ai';
+} from "react-icons/ai";
 
 const Contact = [
   {
-    url: 'mailto:rizkramdhanx@gmail.com',
-    icon: <AiOutlineMail size={30} className="hover:text-orange-500" />,
+    url: "mailto:rizkramdhanx@gmail.com",
+    icon: <AiOutlineMail size={30} className="hover:text-gray-500" />,
   },
   {
-    url: 'https://github.com/rizkiramadhanx',
-    icon: <AiFillGithub size={30} className="hover:text-orange-500" />,
+    url: "https://github.com/rizkiramadhanx",
+    icon: <AiFillGithub size={30} className="hover:text-gray-500" />,
   },
   {
-    url: 'https://linkedin.com/in/rizkiramadhanx',
-    icon: <AiFillLinkedin size={30} className="hover:text-orange-500" />,
+    url: "https://linkedin.com/in/rizkiramadhanx",
+    icon: <AiFillLinkedin size={30} className="hover:text-gray-500" />,
   },
   {
-    url: 'https://instagram.com/rizkiramadhanx/',
-    icon: <AiFillInstagram size={30} className="hover:text-orange-500" />,
+    url: "https://instagram.com/rizkiramadhanx/",
+    icon: <AiFillInstagram size={30} className="hover:text-gray-500" />,
   },
 ];
 const Footer = () => {
@@ -33,8 +33,8 @@ const Footer = () => {
       <div
         className={clsxm(
           styles.container,
-          'h-16',
-          'flex justify-between items-center'
+          "h-16",
+          "flex justify-between items-center"
         )}
       >
         <div className="flex gap-x-2 items-center h-full">

@@ -1,10 +1,10 @@
-import clsxm from '@/libs/clsxm';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { AiFillGithub, AiOutlineGlobal } from 'react-icons/ai';
-import { StaticImageData } from 'next/image';
-import { useTheme } from 'next-themes';
+import clsxm from "@/libs/clsxm";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { AiFillGithub, AiOutlineGlobal } from "react-icons/ai";
+import { StaticImageData } from "next/image";
+import { useTheme } from "next-themes";
 
 export interface PropsProjectCard {
   title: string;
@@ -33,9 +33,9 @@ const ProjectCard = ({
   return (
     <div
       className={clsxm(
-        'rounded-md border border-gray-300 dark:border-white p-2',
-        'hover:scale-105 hover:z-2 bg-main dark:bg-mainDark transition-all',
-        mounted && (theme === 'dark' ? 'button-shadow-gradient-hover' : '')
+        "rounded-md border border-gray-300 dark:border-white p-2",
+        "hover:scale-105 hover:z-2 bg-main dark:bg-mainDark transition-all",
+        mounted && (theme === "dark" ? "button-shadow-gradient-hover" : "")
       )}
     >
       <h1 className="text-xl font-bold capitalize">{title}</h1>
@@ -65,7 +65,7 @@ const ProjectCard = ({
             href={url.source}
             target="_blank"
           >
-            <AiFillGithub size={30} />
+            <AiFillGithub size={30} className="hover:text-gray-500" />
           </Link>
         )}
         {url.deploy && (
@@ -75,7 +75,7 @@ const ProjectCard = ({
             href={url.deploy}
             target="_blank"
           >
-            <AiOutlineGlobal size={30} />
+            <AiOutlineGlobal size={30} className="hover:text-gray-500" />
           </Link>
         )}
       </div>

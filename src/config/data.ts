@@ -5,6 +5,7 @@ import Pahein from "@/assets/project/Pahein.png";
 import Infralib from "@/assets/project/Infralib.png";
 import TodoApp from "@/assets/project/TodoApp.png";
 import Komship from "@/assets/project/Komship.png";
+import SIPUS from "@/assets/project/SIPUS.jpg";
 
 const data = {
   project: {
@@ -75,6 +76,16 @@ const data = {
         technology: ["API", "TailwindCSS"],
         url: {
           deploy: "https://todo-get-hired.vercel.app/",
+        },
+      },
+      {
+        description:
+          "SIPUS is a software application or a suite of software modules designed to facilitate and manage various operations and processes within a library. It is a comprehensive system that integrates and automates different aspects of library management, providing efficient access to library resources and services.",
+        image: SIPUS,
+        title: "SIPUS (Sistem Informasi Perpustakaan",
+        technology: ["Vue", "PrismaORM", "ExpressJS"],
+        url: {
+          source: "https://github.com/rizkiramadhanx/fe-sipus",
         },
       },
     ],

@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+.nav-link:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #cf481f;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+
+.nav-link:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
 @layer components {
   .hover-effect {
     @apply hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br from-pink-400 to-green-600;

@@ -61,7 +61,7 @@ const Header = () => {
                   key={key}
                   className={clsxm(
                     pathname === data.pathname ? 'px-1 ' : '',
-                    'cursor-pointer hover:scale-105 text-underline'
+                    'cursor-pointer hover:scale-105 nav-link'
                   )}
                 >
                   <span

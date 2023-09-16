@@ -24,7 +24,7 @@ const now = () => {
         <p>
           I currently work as a frontend developer at{" "}
           <a
-            href="https://www.freecodecamp.org/"
+            href="https://www.komerce.id/"
             target="_blank"
             className="text-red-600 font-semibold underline"
           >

@@ -35,7 +35,7 @@ const data = {
         technology: ["React", "TailwindCSS", "Public API"],
         title: "The Quran App",
         url: {
-          deploy: "https://quran-rizkiramadhanx.vercel.app/",
+          deploy: "https://quran-app.rizkiramadhanx.dev/",
           source: "https://github.com/rizkiramadhanx/quran-app-react",
         },
       },

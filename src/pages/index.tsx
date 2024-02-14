@@ -36,11 +36,11 @@ export default function Home() {
             </span>
           </h1>
           <p>
-I am a   Web Developer, interested in Web Development with Javascript/Typescript Language. Currently i work as Frontend Developer in Komerce (Purbalingga, Central Java). I am currently learning NodeJS Environment Developer, be it FrontEnd or BackEnd (partial).
+I am a   Web Developer, interested in Web Development with Javascript/Typescript Language. Currently i work as Frontend Developer in Komerce (Purbalingga, Central Java). I am currently learning NodeJS Environment, be it FrontEnd or BackEnd (partial).
           </p>
           <div>
             <Link
-              href="https://s3-ap-southeast-1.amazonaws.com/glints-dashboard/resume/ea5983397f65507b6d80fa1e51360413.pdf"
+              href="https://docs.google.com/document/d/1IgWz5789FQhHKs1EhssbRFw3-bY1L3ikLfCR8ldk6Ps/edit?usp=sharing"
               target="_blank"
             >
               <button className="bg-main dark:bg-mainDark mt-2 p-2 rounded-[2px] button-shadow-gradient">

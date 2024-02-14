@@ -36,10 +36,7 @@ export default function Home() {
             </span>
           </h1>
           <p>
-            Final semester student, interested in Web Development. currently
-            looking for an job especially as a NodeJS Environment Developer. I
-            am currently learning Javascript Environment, be it FrontEnd or
-            BackEnd litte bit.
+I am a   Web Developer, interested in Web Development with Javascript/Typescript Language. Currently i work as Frontend Developer in Komerce (Purbalingga, Central Java). I am currently learning NodeJS Environment Developer, be it FrontEnd or BackEnd (partial).
           </p>
           <div>
             <Link

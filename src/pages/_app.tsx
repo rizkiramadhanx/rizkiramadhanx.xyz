@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { SWRConfig } from "swr";
 import AOS from "aos";
 import "@/styles/nprogress.css";
+import { Analytics } from "@vercel/analytics/react"
 
 import "aos/dist/aos.css";
 import nProgress from "nprogress";

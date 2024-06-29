@@ -32,15 +32,15 @@ const data = {
           source: "https://github.com/rizkiramadhanx/suxz-codedesign",
         },
       },
-      {
-        description: `Pahe.in is a popular website that provides users with a wide range of free movies, TV shows, and other entertainment content that can be downloaded or streamed online. It was established in Indonesia and became a popular platform for fans of movies and TV shows to watch and download their favorite content.`,
-        image: Pahein,
-        technology: ["React", "Chakra", "Public API"],
-        title: "Pahe.in: Movie App",
-        url: {
-          deploy: "https://pahein.rizkiramadhanx.dev/",
-        },
-      },
+      // {
+      //   description: `Pahe.in is a popular website that provides users with a wide range of free movies, TV shows, and other entertainment content that can be downloaded or streamed online. It was established in Indonesia and became a popular platform for fans of movies and TV shows to watch and download their favorite content.`,
+      //   image: Pahein,
+      //   technology: ["React", "Chakra", "Public API"],
+      //   title: "Pahe.in: Movie App",
+      //   url: {
+      //     deploy: "https://pahein.rizkiramadhanx.dev/",
+      //   },
+      // },
       {
         description: `The Quran App is a pocket Quran application that is simple and easy for Muslims to read the Quran anywhere and anytime.`,
         image: QuranApp,
@@ -51,15 +51,15 @@ const data = {
           source: "https://github.com/rizkiramadhanx/quran-app-react",
         },
       },
-      {
-        description: `Dekoor is a web application that provides quality furniture`,
-        image: Dekoor,
-        technology: ["React", "TailwindCSS"],
-        title: "Dekoor Landing Page",
-        url: {
-          deploy: "https://dekoor-theta.vercel.app/",
-        },
-      },
+      // {
+      //   description: `Dekoor is a web application that provides quality furniture`,
+      //   image: Dekoor,
+      //   technology: ["React", "TailwindCSS"],
+      //   title: "Dekoor Landing Page",
+      //   url: {
+      //     deploy: "https://dekoor-theta.vercel.app/",
+      //   },
+      // },
       {
         description:
           "Infralib (Indonesia Infrastructure Library) is an application owned by PT SMI for sharing knowledge and experiences related to infrastructure development. Infralib has two platforms, landing page and backoffice.",

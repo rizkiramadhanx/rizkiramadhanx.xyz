@@ -35,6 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider defaultTheme="light" enableSystem={true} attribute="class">
+      <Analytics/>
       <SWRConfig
         value={{
           fetcher: (url) => axios.get(url).then((res) => res.data),

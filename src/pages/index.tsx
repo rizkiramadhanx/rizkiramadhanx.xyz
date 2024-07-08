@@ -38,7 +38,7 @@ export default function Home() {
           <p>
 I am a   Web Developer, interested in Web Development with Javascript/Typescript Language. Currently i work as Frontend Developer in Komerce (Purbalingga, Central Java). I am currently learning NodeJS Environment, be it FrontEnd or BackEnd (partial).
           </p>
-          <div>
+          {/* <div>
             <Link
               href="https://docs.google.com/document/d/1IgWz5789FQhHKs1EhssbRFw3-bY1L3ikLfCR8ldk6Ps/edit?usp=sharing"
               target="_blank"
@@ -47,7 +47,7 @@ I am a   Web Developer, interested in Web Development with Javascript/Typescript
                 Download CV
               </button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </MainLayout>

@@ -1,5 +1,6 @@
 import clsxm from "@/libs/clsxm";
 import styles from "@/styles/styles";
+import { url } from "inspector";
 import Link from "next/link";
 import React from "react";
 import {
@@ -7,9 +8,14 @@ import {
   AiFillLinkedin,
   AiFillInstagram,
   AiOutlineMail,
+  AiOutlineTikTok,
 } from "react-icons/ai";
 
 const Contact = [
+  {
+    url: "https://tiktok.com/@rizkiramadhanxx",
+    icon: <AiOutlineTikTok size={30} className="hover:text-gray-500" />,
+  },
   {
     url: "mailto:rizkramdhanx@gmail.com",
     icon: <AiOutlineMail size={30} className="hover:text-gray-500" />,

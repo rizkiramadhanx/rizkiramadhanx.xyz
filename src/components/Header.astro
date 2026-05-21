@@ -1,0 +1,54 @@
+---
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { pathname: '/', name: 'Home' },
+  { pathname: '/project', name: 'Project' },
+  { pathname: '/now', name: 'Now' },
+];
+---
+
+<nav
+  id="navbar"
+  class="backdrop-blur-md bg-opacity-20 sticky z-[200] top-0 transition-all duration-200"
+>
+  <div class="max-w-[1280px] px-[30px] sm:px-[70px] md:px-[110px] mx-auto h-16">
+    <div class="flex items-center justify-between h-full">
+      <div class="flex items-center">
+        <div class="hidden sm:inline font-bold text-lg">rizkiramadhanx.</div>
+        <div class="sm:ml-10 flex md:gap-x-5 gap-x-2">
+          {navLinks.map((link) => (
+            <a
+              href={link.pathname}
+              class={`cursor-pointer hover:scale-105 nav-link transition-transform ${pathname === link.pathname ? 'px-1' : ''}`}
+            >
+              <span class={pathname === link.pathname ? 'text-gradient-sm font-extrabold' : ''}>
+                {link.name}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+      <a
+        href="https://docs.google.com/document/d/1IgWz5789FQhHKs1EhssbRFw3-bY1L3ikLfCR8ldk6Ps/edit?usp=sharing"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button class="px-4 py-2 rounded border border-gray-300 font-medium text-sm">
+          Download CV
+        </button>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY === 0) {
+      navbar?.classList.remove('shadow-md', 'border-b', 'border-gray-300', 'bg-white');
+    } else {
+      navbar?.classList.add('shadow-md', 'border-b', 'border-gray-300', 'bg-white');
+    }
+  });
+</script>

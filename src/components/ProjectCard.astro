@@ -1,0 +1,58 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  description: string;
+  technology: string[];
+  image: string;
+  url: {
+    source?: string;
+    deploy?: string;
+  };
+}
+
+const { title, description, technology, image, url } = Astro.props;
+---
+
+<div class="relative rounded-md border border-gray-300 p-2 hover:scale-[1.02] hover:z-[102] bg-white transition-all button-shadow-gradient-hover">
+  <h1 class="text-xl font-bold capitalize">{title}</h1>
+  <p class="text-sm mt-2 text-ellipsis-3">{description}</p>
+  <img
+    src={image}
+    class="w-full h-[180px] object-cover rounded-md my-1"
+    alt={title}
+    loading="lazy"
+  />
+  <div class="flex flex-wrap gap-1 text-sm mt-2">
+    {technology.map((tech) => (
+      <span class="px-2 py-1 bg-slate-100 rounded-md text-black">
+        #{tech}
+      </span>
+    ))}
+  </div>
+  <div class="mt-2 flex gap-x-1">
+    {url.source && (
+      <a
+        href={url.source}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-gray-500 transition-colors"
+        aria-label="Source code"
+      >
+        <Icon name="ri:github-fill" size={30} />
+      </a>
+    )}
+    {url.deploy && (
+      <a
+        href={url.deploy}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-gray-500 transition-colors"
+        aria-label="Live demo"
+      >
+        <Icon name="ri:global-line" size={30} />
+      </a>
+    )}
+  </div>
+</div>

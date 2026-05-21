@@ -1,0 +1,69 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<MainLayout title="Rizki Ramadhan – Frontend Developer" description="Frontend Developer with 2 years of experience building scalable, high-performance web applications. Delivered features for 10K+ active users.">
+  <Header slot="header" />
+
+  <div
+    class="min-h-[calc(100vh_-_64px)] bg-white max-w-[1280px] px-[30px] sm:px-[70px] md:px-[110px] mx-auto py-2 grid sm:grid-cols-2"
+    data-aos="fade-up"
+  >
+    <div class="flex flex-col gap-y-3 justify-center">
+      <h1 class="text-3xl font-bold">Hello,</h1>
+      <h1 class="text-5xl font-bold">
+        I am
+        <span class="text-gradient" id="typewriter-container">
+          {' '}
+          <span id="typewriter-text"></span><span id="typewriter-cursor" class="animate-pulse">_</span>
+        </span>
+      </h1>
+      <p>
+        Frontend Developer with 2 years of experience, specializing in
+        building scalable, high-performance web applications using modern
+        stack. Delivered production-grade features for projects serving 10K+
+        active users, improving load times by up to 20%.
+      </p>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</MainLayout>
+
+<script>
+  const words = ['Rizki Ramadhan'];
+  const el = document.getElementById('typewriter-text');
+  if (el) {
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let loopCount = 0;
+    const maxLoops = 4;
+
+    function type() {
+      const word = words[wordIndex % words.length];
+      if (!deleting) {
+        charIndex++;
+        if (el) el.textContent = word.slice(0, charIndex);
+        if (charIndex === word.length) {
+          if (loopCount >= maxLoops - 1) return;
+          setTimeout(() => { deleting = true; type(); }, 1000);
+          return;
+        }
+        setTimeout(type, 100);
+      } else {
+        charIndex--;
+        if (el) el.textContent = word.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          loopCount++;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+        setTimeout(type, 50);
+      }
+    }
+    type();
+  }
+</script>

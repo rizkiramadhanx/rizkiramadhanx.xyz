@@ -1,0 +1,155 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const experiences = [
+  {
+    role: 'Front-End Developer',
+    company: 'Mutiara Cahaya Slawi',
+    period: 'October 2024 - Now',
+    points: [
+      'Contributed to revamping the internal HRIS application to improve user experience and system functionality.',
+      'Developed and maintained ERP modules to support core business operations.',
+      'Integrated backend data using API technologies and ensured feature stability and proper functionality.',
+      "Assisted in migrating applications to containerized deployment (e.g. Jenkins) for streamlined development and deployment workflows.",
+      'Improved and initiated the company\'s SDLC processes to enhance overall development efficiency and product quality.',
+    ],
+    stack: 'NextJS, ReactJS, Chakra UI, React Native (Android), CI/CD (Jenkins, GitHub Actions)',
+  },
+  {
+    role: 'Front-End Developer',
+    company: 'Komerce',
+    period: 'August 2023 - October 2024',
+    points: [
+      'Created responsive web by slicing designs into code, ensuring easy-to-maintain codebase.',
+      'Integrated backend data using API technology, ensuring all features work properly.',
+      'Collaborated with the team using Git and GitLab.',
+      'Contributed to a project with more than 26,000 users (komship.id and komcards.id).',
+      'Contributed to internal admin project to monitor internal business.',
+    ],
+    stack: 'VueJS, NuxtJS, Bootstrap, ReactJS, Ant-Design, Tailwind CSS',
+  },
+  {
+    role: 'Front-End Developer (Internship)',
+    company: 'DOT Indonesia',
+    period: 'August 2022 - December 2022',
+    points: [
+      'Collaborated with a cross-functional team to deliver a complex mailing web application on time.',
+      'Built responsive web by breaking down designs into maintainable code.',
+      'Integrated backend data using API technology.',
+      'Built reusable components and optimized frontend performance for scalability and smooth UX.',
+    ],
+    stack: 'NextJS, React, Ant-Design, Tailwind CSS, react-hook-form, react-query',
+  },
+  {
+    role: 'Front-End Web and Back-End Developer (Bootcamp)',
+    company: 'Dicoding x Kampus Merdeka',
+    period: 'August 2021 - January 2022',
+    points: [
+      'Developed responsive and user-friendly websites using HTML, CSS, and JavaScript.',
+      'Collaborated with a team of 3 using Git and GitHub for version control and code reviews.',
+      'Integrated and processed backend data from REST APIs.',
+      'Delivered capstone project on time, meeting all functional and UI/UX standards.',
+    ],
+    stack: 'HTML, CSS, Javascript, Git',
+  },
+];
+
+const hardSkills = [
+  'HTML & CSS',
+  'Javascript & Typescript',
+  'Vue JS',
+  'React JS',
+  'Next JS',
+  'Tailwind CSS',
+  'React Native',
+  'NodeJS (Express) & NestJS',
+];
+
+const relatedProjects = [
+  'Komcards (Payment Card)',
+  'Infralib - PT Sarana Multi Infrastruktur (CMS)',
+  'HRIS Mutiara Cahaya (Internal)',
+  'SPARK PDT Mobile',
+  'ERP Mutiara Cahaya (Retail ERP)',
+  'SPARK HRIS',
+  'Kubik Billing (Side project - profitable)',
+  'Stocksense - Financial Tools (Ongoing)',
+  'Kasir Agen (Bookkeeping for Mini ATM Agents)',
+];
+---
+
+<MainLayout title="About – Rizki Ramadhan" description="Learn about Rizki Ramadhan's experience, skills, and education. Frontend Developer at Mutiara Cahaya Slawi, previously at Komerce and DOT Indonesia.">
+  <Header slot="header" />
+
+  <div
+    class="min-h-[calc(100vh_-_64px)] bg-white max-w-[1280px] px-[30px] sm:px-[70px] md:px-[110px] mx-auto py-8"
+  >
+    <section class="mb-8">
+      <h1 class="text-2xl font-bold mb-2">About Me</h1>
+      <p class="leading-relaxed">
+        Frontend Developer with 2 years of experience, specializing in building scalable,
+        high-performance web applications using modern stack. Experienced in developing
+        responsive interfaces and optimizing UI performance across browsers and devices.
+        Delivered production-grade features for projects serving 10K+ active users,
+        improving load times by up to 20%. Strong focus on clean architecture, reusable
+        components, and seamless user experience.
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h1 class="text-2xl font-bold mb-4">Experience</h1>
+      <div class="flex flex-col gap-y-6">
+        {experiences.map((exp) => (
+          <div class="border-l-2 border-slate-400 pl-4">
+            <h2 class="font-bold text-lg">{exp.role}</h2>
+            <p class="text-sm opacity-70">{exp.company} · {exp.period}</p>
+            <ul class="list-disc list-inside mt-2 flex flex-col gap-y-1">
+              {exp.points.map((point) => (
+                <li class="text-sm leading-relaxed">{point}</li>
+              ))}
+            </ul>
+            <p class="text-xs mt-2 opacity-60">Stack: {exp.stack}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h1 class="text-2xl font-bold mb-3">Hard Skills</h1>
+      <div class="flex flex-wrap gap-2">
+        {hardSkills.map((skill) => (
+          <span class="px-3 py-1 rounded-full text-sm border border-slate-400 opacity-80">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <h1 class="text-2xl font-bold mb-3">Related Projects</h1>
+      <ul class="list-disc list-inside flex flex-col gap-y-1">
+        {relatedProjects.map((project) => (
+          <li class="text-sm">{project}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h1 class="text-2xl font-bold mb-2">Education</h1>
+      <div class="flex flex-col gap-y-2">
+        <div>
+          <p class="font-semibold">Universitas Muhammadiyah Purwokerto</p>
+          <p class="text-sm opacity-70">Informatics Engineering · 2019 – 2023</p>
+        </div>
+        <div>
+          <p class="font-semibold">SMA Negeri 4 Kota Tegal</p>
+          <p class="text-sm opacity-70">Mathematics and Science · 2016 – 2019</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</MainLayout>

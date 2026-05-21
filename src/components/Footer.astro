@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const contacts = [
+  { url: 'https://tiktok.com/@rizkiramadhanxx', label: 'TikTok', icon: 'ri:tiktok-fill' },
+  { url: 'mailto:rizkramdhanx@gmail.com', label: 'Email', icon: 'ri:mail-fill' },
+  { url: 'https://github.com/rizkiramadhanxx', label: 'GitHub', icon: 'ri:github-fill' },
+  { url: 'https://linkedin.com/in/rizkiramadhanx', label: 'LinkedIn', icon: 'ri:linkedin-box-fill' },
+  { url: 'https://instagram.com/rizkiramadhanx/', label: 'Instagram', icon: 'ri:instagram-fill' },
+];
+---
+
+<footer class="shadow-md shadow-black">
+  <div class="max-w-[1280px] px-[30px] sm:px-[70px] md:px-[110px] mx-auto h-16 flex justify-between items-center">
+    <div class="flex gap-x-2 items-center h-full">
+      {contacts.map((contact) => (
+        <a
+          href={contact.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[#cf481f] transition-colors"
+          aria-label={contact.label}
+        >
+          <Icon name={contact.icon} size={30} />
+        </a>
+      ))}
+    </div>
+    <div>&copy; rizkiramadhanx</div>
+  </div>
+</footer>

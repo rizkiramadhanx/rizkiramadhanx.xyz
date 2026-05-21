@@ -54,7 +54,7 @@ const projects: Project[] = [
     image: '/assets/project/spark-hris.jpg',
     title: 'Spark HRIS',
     technology: ['Mantine UI', 'React', 'Vite JS'],
-    description: 'Development HRIS for 500+ User',
+    description: 'Spark HRIS is a human resource information system serving 500+ employees, handling core HR workflows such as attendance, leave management, employee records, and organizational structure to streamline HR operations company-wide.',
     url: {
       deploy: 'https://www.linkedin.com/in/rizkiramadhanx/details/projects/',
     },

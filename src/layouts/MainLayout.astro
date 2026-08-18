@@ -1,17 +1,62 @@
 ---
 import '../styles/globals.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
   description?: string;
+  /** Set true on pages that should not be indexed (404, drafts, etc.) */
+  noindex?: boolean;
+  /** Page-specific JSON-LD, merged after the site-wide Person schema */
+  schema?: Record<string, unknown>;
 }
 
 const {
   title,
-  description = 'Frontend Developer with 2 years of experience, specializing in building scalable, high-performance web applications using modern stack.',
+  description = 'Software Engineer building web and mobile products — 3 years of experience shipping scalable, high-performance applications with React, Next.js, React Native and Flutter.',
+  noindex = false,
+  schema,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, 'https://rizkiramadhanx.xyz');
+const SITE = 'https://rizkiramadhanx.xyz';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE);
+const ogImage = new URL('/png/profile.png', Astro.site ?? SITE);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Rizki Ramadhan',
+  url: SITE,
+  image: ogImage.href,
+  jobTitle: 'Software Engineer',
+  description,
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Mutiara Cahaya Slawi',
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Universitas Muhammadiyah Purwokerto',
+  },
+  knowsAbout: [
+    'Software Engineering',
+    'Web Development',
+    'Mobile Development',
+    'React',
+    'Vue.js',
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'React Native',
+    'Flutter',
+  ],
+  sameAs: [
+    'https://github.com/rizkiramadhanxx',
+    'https://linkedin.com/in/rizkiramadhanx',
+    'https://instagram.com/rizkiramadhanx/',
+    'https://tiktok.com/@rizkiramadhanxx',
+  ],
+};
 ---
 
 <!doctype html>
@@ -23,6 +68,13 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://rizkiramadhanx.xyz');
     <meta name="description" content={description} />
     <meta name="author" content="Rizki Ramadhan" />
     <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#1a1c1e" />
+
+    <link rel="icon" href="/png/profile.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/png/profile.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -30,24 +82,71 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://rizkiramadhanx.xyz');
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="rizkiramadhanx" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Rizki Ramadhan – Software Engineer, Web & Mobile" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Rizki Ramadhan – Software Engineer, Web & Mobile" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..700;1,300..700&display=swap"
       rel="stylesheet"
     />
+
+    <ClientRouter />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />}
   </head>
-  <body class="bg-white text-black font-sans">
+  <body class="bg-[#1a1c1e] text-[#e8eaed] font-sans antialiased">
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-[300] focus:top-2 focus:left-2 focus:bg-[#1a1c1e] focus:text-white focus:px-4 focus:py-2 focus:rounded focus:border focus:border-gray-300"
+    >
+      Skip to content
+    </a>
     <slot name="header" />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <slot name="footer" />
+
+    <script is:inline>
+      // Re-runs on every view transition — with ClientRouter there is no full
+      // page load, so a load-only listener would leave later pages hidden.
+      function initReveals() {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const targets = document.querySelectorAll('.reveal, .reveal-group');
+        if (reduce || !('IntersectionObserver' in window)) {
+          targets.forEach((el) => el.classList.add('is-in'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+        );
+        targets.forEach((el) => io.observe(el));
+      }
+
+      initReveals();
+      document.addEventListener('astro:page-load', initReveals);
+    </script>
   </body>
 </html>

@@ -1,69 +1,172 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import ShellLayout from '../layouts/ShellLayout.astro';
+import Section from '../components/Section.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import projects from '../data/projects';
+
+const stack = [
+  { group: 'Languages', items: ['TypeScript', 'JavaScript'] },
+  { group: 'Frameworks', items: ['React', 'Next.js', 'Vue', 'Nuxt', 'React Native', 'Flutter'] },
+  { group: 'Styling', items: ['Tailwind CSS', 'Chakra UI', 'Ant Design', 'Bootstrap'] },
+  { group: 'Backend & Ops', items: ['NestJS', 'Express', 'REST API', 'Git', 'Jenkins', 'CI/CD'] },
+];
+
+const faqs = [
+  {
+    q: 'What do you work on?',
+    a: 'Web and mobile apps — dashboards, ERP, HRIS, payment tools, and landing pages. Mostly frontend, fullstack when the project needs it.',
+  },
+  {
+    q: 'What is your stack?',
+    a: 'React, Next.js, Vue, Nuxt with TypeScript and Tailwind. React Native and Flutter for mobile. NestJS or Express for backend.',
+  },
+  {
+    q: 'Have you shipped to real users?',
+    a: 'Yes. komship.id and komcards.id have 26,000+ users. I also run Kubik Billing and Kasir Agen, which are live and paying.',
+  },
+  {
+    q: 'Are you available for work?',
+    a: "I work at Mutiara Cahaya Slawi and I'm open to new opportunities. Email me.",
+  },
+];
+
+const featured = projects.slice(0, 3);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 
-<MainLayout title="Rizki Ramadhan – Frontend Developer" description="Frontend Developer with 2 years of experience building scalable, high-performance web applications. Delivered features for 10K+ active users.">
-  <Header slot="header" />
-
-  <div
-    class="min-h-[calc(100vh_-_64px)] bg-white max-w-[1280px] px-[30px] sm:px-[70px] md:px-[110px] mx-auto py-2 grid sm:grid-cols-2"
-    data-aos="fade-up"
-  >
-    <div class="flex flex-col gap-y-3 justify-center">
-      <h1 class="text-3xl font-bold">Hello,</h1>
-      <h1 class="text-5xl font-bold">
-        I am
-        <span class="text-gradient" id="typewriter-container">
-          {' '}
-          <span id="typewriter-text"></span><span id="typewriter-cursor" class="animate-pulse">_</span>
-        </span>
-      </h1>
-      <p>
-        Frontend Developer with 2 years of experience, specializing in
-        building scalable, high-performance web applications using modern
-        stack. Delivered production-grade features for projects serving 10K+
-        active users, improving load times by up to 20%.
-      </p>
+<ShellLayout
+  title="Rizki Ramadhan – Software Engineer, Web & Mobile"
+  description="Software Engineer building web and mobile products with React, Next.js and React Native. Delivered features for projects serving 10K+ active users."
+  schema={faqSchema}
+>
+  <!-- Hero -->
+  <section class="border-b rule px-4 sm:px-10 py-4 sm:py-4">
+    <h1 class="display-xl max-w-[22ch] enter enter-1">
+      Software Engineer — Web &amp; Mobile
+    </h1>
+    <p class="mt-7 max-w-[52ch] text-[0.9375rem] leading-[1.7] text-[#a8adb3] enter enter-2">
+      3 years building web and mobile apps with React, Next.js, Vue, React
+      Native and Flutter. I have worked on ERP, HRIS, and payment products used
+      by 26,000+ people, and I ship my own side products.
+    </p>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 mt-9 enter enter-3">
+      <a
+        href="/project"
+        class="btn-dark group inline-flex items-center gap-x-2 px-5 py-2.5 rounded-full text-[0.8125rem] font-medium"
+      >
+        View projects
+        <span>→</span>
+      </a>
+      <a href="/now" class="link-draw text-[0.8125rem] text-[#a8adb3] hover:text-[#e8eaed] transition-colors">
+        Experience
+      </a>
     </div>
-  </div>
+  </section>
 
-  <Footer slot="footer" />
-</MainLayout>
+  <!-- Stats -->
+  <section class="border-b rule px-4 sm:px-10 py-4 sm:py-4 reveal grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-8">
+    {[
+      { n: '3 yrs', l: 'Experience' },
+      { n: '26,000+', l: 'Users reached' },
+      { n: '20+', l: 'Projects shipped' },
+      { n: '20%', l: 'Faster load times' },
+    ].map((s) => (
+      <div>
+        <div class="text-[1.75rem] sm:text-[2.125rem] font-semibold tabular-nums text-[#e8eaed] leading-none">{s.n}</div>
+        <div class="text-[0.8125rem] text-[#a8adb3] mt-2">{s.l}</div>
+      </div>
+    ))}
+  </section>
 
-<script>
-  const words = ['Rizki Ramadhan'];
-  const el = document.getElementById('typewriter-text');
-  if (el) {
-    let wordIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-    let loopCount = 0;
-    const maxLoops = 4;
+  <Section title="What I do">
+    <ul class="flex flex-col gap-y-4 max-w-[62ch]">
+      {[
+        'Build web apps with React, Next.js, Vue and Nuxt.',
+        'Build mobile apps with React Native and Flutter.',
+        'Integrate REST APIs and handle state, auth, and data flow.',
+        'Write backend when needed — NestJS, Express, SQL.',
+        'Set up CI/CD with Jenkins and GitHub Actions.',
+      ].map((item) => (
+        <li class="flex gap-x-3 text-[0.9375rem] leading-[1.6] text-[#a8adb3]">
+          <span class="text-[#e8eaed] shrink-0">—</span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
 
-    function type() {
-      const word = words[wordIndex % words.length];
-      if (!deleting) {
-        charIndex++;
-        if (el) el.textContent = word.slice(0, charIndex);
-        if (charIndex === word.length) {
-          if (loopCount >= maxLoops - 1) return;
-          setTimeout(() => { deleting = true; type(); }, 1000);
-          return;
-        }
-        setTimeout(type, 100);
-      } else {
-        charIndex--;
-        if (el) el.textContent = word.slice(0, charIndex);
-        if (charIndex === 0) {
-          deleting = false;
-          loopCount++;
-          wordIndex = (wordIndex + 1) % words.length;
-        }
-        setTimeout(type, 50);
-      }
-    }
-    type();
-  }
-</script>
+  <Section title="Stack">
+    <div class="flex flex-col gap-y-5 reveal-group">
+      {stack.map((row) => (
+        <div class="sm:flex sm:items-baseline sm:gap-x-8">
+          <div class="sm:w-36 shrink-0 mb-2 sm:mb-0 text-[0.9375rem] font-medium text-[#e8eaed]">{row.group}</div>
+          <div class="flex flex-wrap gap-2">
+            {row.items.map((item) => (
+              <span class="chip px-3 py-1 rounded-full text-[0.8125rem]">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Approach: prose, not four identical boxes -->
+  <!-- Work -->
+  <Section title="Projects">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal-group">
+      {featured.map((project) => (
+        <ProjectCard
+          title={project.title}
+          description={project.description}
+          image={project.image}
+          technology={project.technology}
+          url={project.url}
+        />
+      ))}
+    </div>
+    <a href="/project" class="link-draw inline-block mt-7 text-[0.8125rem] font-medium text-[#e8eaed]">
+      All projects →
+    </a>
+  </Section>
+
+  <!-- FAQ -->
+  <Section title="FAQ">
+    <div class="max-w-[68ch]">
+      {faqs.map((faq, i) => (
+        <details class={`group py-4 ${i !== 0 ? 'border-t rule' : ''}`}>
+          <summary class="cursor-pointer list-none flex items-start justify-between gap-x-6 text-[0.9375rem] font-medium hover:text-[#e8eaed] transition-colors">
+            {faq.q}
+            <span class="text-[#e8eaed] text-lg leading-none shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+          </summary>
+          <p class="text-[0.9375rem] leading-[1.7] text-[#a8adb3] mt-3 max-w-[58ch]">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <section class="px-4 sm:px-10 py-4 sm:py-4 glass-band reveal">
+    <h2 class="display-md max-w-[18ch]">
+      Looking for an engineer?
+    </h2>
+    <p class="mt-4 max-w-[48ch] leading-[1.7] text-[#a8adb3]">
+      Open for full-time roles and freelance projects. Email is fastest.
+    </p>
+    <a
+      href="mailto:works.rizkiramadhanx@gmail.com"
+      class="group inline-flex items-center gap-x-2 mt-6 text-[0.9375rem] font-medium opacity-90 hover:opacity-100 transition-opacity duration-200"
+    >
+      <span class="link-draw">works.rizkiramadhanx@gmail.com</span>
+      <span class="text-[#e8eaed] transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+    </a>
+  </section>
+</ShellLayout>

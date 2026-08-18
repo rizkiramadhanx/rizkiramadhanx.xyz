@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rizkiramadhanx.xyz/sitemap-index.xml

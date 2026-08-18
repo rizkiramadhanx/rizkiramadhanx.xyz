@@ -1,0 +1,21 @@
+---
+import MainLayout from './MainLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  schema?: Record<string, unknown>;
+}
+
+const { title, description, schema } = Astro.props;
+---
+
+<MainLayout title={title} description={description} schema={schema}>
+  <div class="lg:flex max-w-[1500px] mx-auto min-w-0">
+    <Sidebar />
+    <div class="flex-1 min-w-0 content-sheet">
+      <slot />
+    </div>
+  </div>
+</MainLayout>

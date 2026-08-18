@@ -1,18 +1,31 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import ShellLayout from '../layouts/ShellLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import projects from '../data/projects';
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Projects – Rizki Ramadhan',
+  url: 'https://rizkiramadhanx.xyz/project',
+  hasPart: projects.map((project) => ({
+    '@type': 'CreativeWork',
+    name: project.title,
+    abstract: project.description,
+    keywords: project.technology.join(', '),
+    ...(project.url.deploy ? { url: project.url.deploy } : {}),
+  })),
+};
 ---
 
-<MainLayout title="Projects – Rizki Ramadhan" description="A collection of web projects by Rizki Ramadhan — including Komcards, Infralib, Komship, The Quran App, and more.">
-  <Header slot="header" />
-
-  <div
-    class="min-h-[calc(100vh_-_64px)] bg-white max-w-[1280px] px-[30px] sm:px-[70px] md:px-[110px] mx-auto"
-  >
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 my-10">
+<ShellLayout title="Projects – Rizki Ramadhan | Software Engineer Portfolio" description="A collection of web projects by Rizki Ramadhan — including Komcards, Infralib, Komship, The Quran App, and more." schema={collectionSchema}>
+  <div class="px-4 sm:px-10 py-4 sm:py-4">
+    <h1 class="display-xl max-w-[13ch] enter enter-1">Projects</h1>
+    <p class="mt-6 max-w-[54ch] enter enter-2 text-[0.9375rem] leading-[1.7] text-[#a8adb3]">
+      Client work and my own products. ERP, HRIS, payment cards, and bookkeeping
+      tools for Mini ATM agents.
+    </p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12 reveal reveal-group">
       {projects.map((project) => (
         <ProjectCard
           title={project.title}
@@ -24,6 +37,4 @@ import projects from '../data/projects';
       ))}
     </div>
   </div>
-
-  <Footer slot="footer" />
-</MainLayout>
+</ShellLayout>

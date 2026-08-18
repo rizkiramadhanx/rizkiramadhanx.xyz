@@ -119,16 +119,6 @@ const projects: Project[] = [
     },
   },
   {
-    image: '/assets/project/TodoApp.png',
-    description:
-      'A to-do list web app that created when i joined Devcode Frontend Challenge by Gethired.id few days ago. The app contains some basic features like adding, updating, and removing todos. Todos are grouped inside an activity.',
-    title: 'Todo App Chalenge',
-    technology: ['API', 'TailwindCSS'],
-    url: {
-      deploy: 'https://todo-get-hired.vercel.app/',
-    },
-  },
-  {
     image: '/assets/project/SIPUS.jpg',
     description:
       'SIPUS is a software application or a suite of software modules designed to facilitate and manage various operations and processes within a library. It is a comprehensive system that integrates and automates different aspects of library management, providing efficient access to library resources and services.',

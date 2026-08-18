@@ -1,0 +1,113 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { pathname: '/', name: 'Home' },
+  { pathname: '/project', name: 'Work' },
+  { pathname: '/now', name: 'About' },
+];
+
+const contacts = [
+  { url: 'https://linkedin.com/in/rizkiramadhanx', label: 'LinkedIn', icon: 'ri:linkedin-box-fill' },
+  { url: 'https://github.com/rizkiramadhanxx', label: 'GitHub', icon: 'ri:github-fill' },
+  { url: 'https://instagram.com/rizkiramadhanx/', label: 'Instagram', icon: 'ri:instagram-fill' },
+  { url: 'https://tiktok.com/@rizkiramadhanxx', label: 'TikTok', icon: 'ri:tiktok-fill' },
+  { url: 'mailto:works.rizkiramadhanx@gmail.com', label: 'Email', icon: 'ri:mail-fill' },
+];
+
+const CV_URL =
+  'https://docs.google.com/document/d/1IgWz5789FQhHKs1EhssbRFw3-bY1L3ikLfCR8ldk6Ps/edit?usp=sharing';
+---
+
+<aside
+  transition:name="sidebar"
+  class="w-full max-w-full min-w-0 glass-panel lg:w-[380px] lg:shrink-0 lg:border-r border-b lg:border-b-0 rule"
+>
+  <div class="px-7 py-5 flex flex-col gap-y-7 min-w-0 enter enter-1 lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto">
+    <!-- Identity -->
+    <div class="flex flex-col gap-y-4">
+      <img
+        src="/png/profile.png"
+        alt="Rizki Ramadhan"
+        width="640"
+        height="640"
+        loading="eager"
+        decoding="async"
+        class="w-full aspect-square rounded-xl object-cover border rule"
+      />
+
+      <div class="min-w-0">
+        <div class="font-display text-[1.0625rem] leading-snug">Rizki Ramadhan</div>
+        <div class="text-[0.875rem] text-[#a8adb3] mt-1">Software Engineer · Web &amp; Mobile</div>
+      </div>
+ </div>
+
+    <!-- Nav -->
+    <nav aria-label="Main navigation" class="flex gap-1 flex-col">
+      {navLinks.map((link, i) => (
+        <a
+          href={link.pathname}
+          aria-current={pathname === link.pathname ? 'page' : undefined}
+          class={`group flex items-center gap-x-2 px-3 -mx-3 py-2 rounded-md transition-colors duration-200 ${
+            pathname === link.pathname
+              ? 'bg-white/[0.07]'
+              : 'hover:bg-white/[0.04]'
+          }`}
+        >
+          <span class="w-3 shrink-0 flex items-center" aria-hidden="true">
+            <span
+              class={`h-[5px] w-[5px] rounded-full transition-all duration-300 ${
+                pathname === link.pathname
+                  ? 'bg-[#e8eaed] opacity-100 scale-100'
+                  : 'bg-[#e8eaed] opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'
+              }`}
+            ></span>
+          </span>
+          <span
+            class={`text-[0.9375rem] transition-colors duration-300 ${
+              pathname === link.pathname
+                ? 'text-[#e8eaed] font-medium'
+                : 'text-[#e8eaed] group-hover:text-[#e8eaed]'
+            }`}
+          >
+            {link.name}
+          </span>
+
+        </a>
+      ))}
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex flex-col gap-y-2.5">
+      <a
+        href={CV_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-ghost flex items-center justify-between px-4 py-3 rounded-full border rule text-[0.9375rem] font-medium"
+      >
+        Download CV
+      </a>
+    </div>
+
+    <!-- Socials -->
+    <div class="flex items-center gap-x-3">
+      {contacts.map((contact) => (
+        <a
+          href={contact.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={contact.label}
+          class="text-[#a8adb3] hover:text-[#e8eaed] hover:-translate-y-0.5 transition-all duration-200"
+        >
+          <Icon name={contact.icon} size={24} />
+        </a>
+      ))}
+    </div>
+
+    <div class="pt-5 border-t rule text-[0.875rem] text-[#a8adb3] opacity-70">
+      Tegal, Indonesia · {new Date().getFullYear()}
+    </div>
+  </div>
+</aside>

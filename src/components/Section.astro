@@ -1,0 +1,16 @@
+---
+interface Props {
+  title?: string;
+  as?: 'h1' | 'h2';
+  id?: string;
+  class?: string;
+}
+
+const { title, as = 'h2', id, class: className = '' } = Astro.props;
+const Heading = as;
+---
+
+<section id={id} class={`border-b rule px-7 sm:px-10 py-14 reveal ${className}`}>
+  {title && <Heading class="display-md mb-8">{title}</Heading>}
+  <slot />
+</section>

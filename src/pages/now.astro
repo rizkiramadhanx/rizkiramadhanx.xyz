@@ -1,7 +1,6 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import ShellLayout from '../layouts/ShellLayout.astro';
+import Section from '../components/Section.astro';
 
 const experiences = [
   {
@@ -57,14 +56,12 @@ const experiences = [
 ];
 
 const hardSkills = [
-  'HTML & CSS',
-  'Javascript & Typescript',
-  'Vue JS',
-  'React JS',
-  'Next JS',
-  'Tailwind CSS',
-  'React Native',
-  'NodeJS (Express) & NestJS',
+  { group: 'Languages', items: ['TypeScript', 'JavaScript'] },
+  { group: 'Frontend', items: ['React', 'Next.js', 'Vue', 'Nuxt'] },
+  { group: 'Mobile', items: ['React Native', 'Flutter'] },
+  { group: 'Styling', items: ['Tailwind CSS', 'Chakra UI', 'Ant Design', 'Bootstrap'] },
+  { group: 'Backend', items: ['NestJS', 'Express', 'REST API'] },
+  { group: 'Tools & Ops', items: ['Git', 'Jenkins', 'GitHub Actions', 'CI/CD'] },
 ];
 
 const relatedProjects = [
@@ -78,78 +75,103 @@ const relatedProjects = [
   'Stocksense - Financial Tools (Ongoing)',
   'Kasir Agen (Bookkeeping for Mini ATM Agents)',
 ];
+
+const profileSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  name: 'About & Experience – Rizki Ramadhan',
+  url: 'https://rizkiramadhanx.xyz/now',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Rizki Ramadhan',
+    jobTitle: 'Software Engineer',
+    knowsAbout: hardSkills.flatMap((row) => row.items),
+    hasOccupation: experiences.map((exp) => ({
+      '@type': 'Occupation',
+      name: exp.role,
+      occupationLocation: { '@type': 'Organization', name: exp.company },
+      skills: exp.stack,
+    })),
+  },
+};
 ---
 
-<MainLayout title="About – Rizki Ramadhan" description="Learn about Rizki Ramadhan's experience, skills, and education. Frontend Developer at Mutiara Cahaya Slawi, previously at Komerce and DOT Indonesia.">
-  <Header slot="header" />
-
-  <div
-    class="min-h-[calc(100vh_-_64px)] bg-white max-w-[1280px] px-[30px] sm:px-[70px] md:px-[110px] mx-auto py-8"
-  >
-    <section class="mb-8">
-      <h1 class="text-2xl font-bold mb-2">About Me</h1>
-      <p class="leading-relaxed">
-        Frontend Developer with 2 years of experience, specializing in building scalable,
-        high-performance web applications using modern stack. Experienced in developing
-        responsive interfaces and optimizing UI performance across browsers and devices.
-        Delivered production-grade features for projects serving 10K+ active users,
-        improving load times by up to 20%. Strong focus on clean architecture, reusable
-        components, and seamless user experience.
+<ShellLayout title="About & Experience – Rizki Ramadhan | Software Engineer" description="Rizki Ramadhan's experience, skills, and education. Software Engineer at Mutiara Cahaya Slawi, previously at Komerce and DOT Indonesia." schema={profileSchema}>
+  <div>
+    <section class="border-b rule px-4 sm:px-10 py-4 sm:py-4">
+      <h1 class="display-xl max-w-[16ch] mb-6 enter enter-1">About</h1>
+      <p class="max-w-[62ch] text-[0.9375rem] leading-[1.75] text-[#a8adb3]">
+        Software Engineer with 3 years of experience building web and mobile apps.
+        I work mainly with React, Next.js, Vue, React Native and Flutter, and I handle
+        backend with NestJS or Express when a project needs it. I have shipped
+        features for products with 26,000+ users and cut load times by up to 20%.
+        Currently at Mutiara Cahaya Slawi, based in Tegal, Indonesia.
       </p>
     </section>
 
-    <section class="mb-8">
-      <h1 class="text-2xl font-bold mb-4">Experience</h1>
-      <div class="flex flex-col gap-y-6">
+    <section class="border-b rule px-4 sm:px-10 py-4 sm:py-4 reveal">
+      <h2 class="display-md mb-8">Experience</h2>
+      <div class="flex flex-col gap-y-9 reveal-group">
         {experiences.map((exp) => (
-          <div class="border-l-2 border-slate-400 pl-4">
-            <h2 class="font-bold text-lg">{exp.role}</h2>
-            <p class="text-sm opacity-70">{exp.company} · {exp.period}</p>
-            <ul class="list-disc list-inside mt-2 flex flex-col gap-y-1">
+          <div class="relative pb-2">
+            <h3 class="font-display text-[0.9375rem] leading-snug">{exp.role}</h3>
+            <p class="mono-sm text-[#a8adb3] mt-1.5">{exp.company} · {exp.period}</p>
+            <ul class="mt-3 flex flex-col gap-y-1.5">
               {exp.points.map((point) => (
-                <li class="text-sm leading-relaxed">{point}</li>
+                <li class="flex gap-x-2.5 text-[0.8125rem] leading-[1.7] text-[#a8adb3] max-w-[64ch]">
+                  <span class="text-[#e8eaed] shrink-0">—</span>
+                  <span>{point}</span>
+                </li>
               ))}
             </ul>
-            <p class="text-xs mt-2 opacity-60">Stack: {exp.stack}</p>
+            <p class="mono-sm text-[#a8adb3] mt-3.5 opacity-80">{exp.stack}</p>
           </div>
         ))}
       </div>
     </section>
 
-    <section class="mb-8">
-      <h1 class="text-2xl font-bold mb-3">Hard Skills</h1>
-      <div class="flex flex-wrap gap-2">
-        {hardSkills.map((skill) => (
-          <span class="px-3 py-1 rounded-full text-sm border border-slate-400 opacity-80">
-            {skill}
-          </span>
+    <section class="border-b rule px-4 sm:px-10 py-4 sm:py-4 reveal">
+      <h2 class="display-md mb-8">Hard Skills</h2>
+      <div class="flex flex-col gap-y-5">
+        {hardSkills.map((row) => (
+          <div class="sm:flex sm:items-baseline sm:gap-x-8">
+            <div class="sm:w-36 shrink-0 mb-2 sm:mb-0 text-[0.9375rem] font-medium text-[#e8eaed]">
+              {row.group}
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {row.items.map((item) => (
+                <span class="chip px-3 py-1 rounded-full text-[0.8125rem]">{item}</span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>
 
-    <section class="mb-8">
-      <h1 class="text-2xl font-bold mb-3">Related Projects</h1>
-      <ul class="list-disc list-inside flex flex-col gap-y-1">
+    <section class="border-b rule px-4 sm:px-10 py-4 sm:py-4 reveal">
+      <h2 class="display-md mb-8">Related Projects</h2>
+      <ul class="flex flex-col gap-y-1.5 max-w-[60ch]">
         {relatedProjects.map((project) => (
-          <li class="text-sm">{project}</li>
+          <li class="flex gap-x-2.5 text-[0.8125rem] leading-[1.7] text-[#a8adb3]">
+            <span class="text-[#e8eaed] shrink-0">—</span>
+            <span>{project}</span>
+          </li>
         ))}
       </ul>
     </section>
 
-    <section>
-      <h1 class="text-2xl font-bold mb-2">Education</h1>
-      <div class="flex flex-col gap-y-2">
+    <section class="px-4 sm:px-10 py-4 sm:py-4 reveal">
+      <h2 class="display-md mb-8">Education</h2>
+      <div class="flex flex-col gap-y-5">
         <div>
-          <p class="font-semibold">Universitas Muhammadiyah Purwokerto</p>
-          <p class="text-sm opacity-70">Informatics Engineering · 2019 – 2023</p>
+          <p class="font-display text-[0.9375rem]">Universitas Muhammadiyah Purwokerto</p>
+          <p class="mono-sm text-[#a8adb3] mt-1">Informatics Engineering · 2019 – 2023</p>
         </div>
         <div>
-          <p class="font-semibold">SMA Negeri 4 Kota Tegal</p>
-          <p class="text-sm opacity-70">Mathematics and Science · 2016 – 2019</p>
+          <p class="font-display text-[0.9375rem]">SMA Negeri 4 Kota Tegal</p>
+          <p class="mono-sm text-[#a8adb3] mt-1">Mathematics and Science · 2016 – 2019</p>
         </div>
       </div>
     </section>
   </div>
-
-  <Footer slot="footer" />
-</MainLayout>
+</ShellLayout>

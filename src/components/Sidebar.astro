@@ -1,7 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-const pathname = Astro.url.pathname;
+// Astro serves pages as directories (/project/), so the URL carries a trailing
+// slash the navLinks entries don't. Normalize both sides before comparing.
+const normalize = (path: string) => path.replace(/\/+$/, '') || '/';
+const pathname = normalize(Astro.url.pathname);
 
 const navLinks = [
   { pathname: '/', name: 'Home' },
@@ -49,9 +52,9 @@ const CV_URL =
       {navLinks.map((link, i) => (
         <a
           href={link.pathname}
-          aria-current={pathname === link.pathname ? 'page' : undefined}
+          aria-current={pathname === normalize(link.pathname) ? 'page' : undefined}
           class={`group flex items-center gap-x-2 px-3 -mx-3 py-2 rounded-md transition-colors duration-200 ${
-            pathname === link.pathname
+            pathname === normalize(link.pathname)
               ? 'bg-white/[0.07]'
               : 'hover:bg-white/[0.04]'
           }`}
@@ -59,7 +62,7 @@ const CV_URL =
           <span class="w-3 shrink-0 flex items-center" aria-hidden="true">
             <span
               class={`h-[5px] w-[5px] rounded-full transition-all duration-300 ${
-                pathname === link.pathname
+                pathname === normalize(link.pathname)
                   ? 'bg-[#e8eaed] opacity-100 scale-100'
                   : 'bg-[#e8eaed] opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'
               }`}
@@ -67,7 +70,7 @@ const CV_URL =
           </span>
           <span
             class={`text-[0.9375rem] transition-colors duration-300 ${
-              pathname === link.pathname
+              pathname === normalize(link.pathname)
                 ? 'text-[#e8eaed] font-medium'
                 : 'text-[#e8eaed] group-hover:text-[#e8eaed]'
             }`}

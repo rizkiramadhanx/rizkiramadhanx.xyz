@@ -1,0 +1,228 @@
+---
+import { Icon } from 'astro-icon/components';
+import ShellLayout from '../../layouts/ShellLayout.astro';
+import projects from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { title, description, story, technology, image, screenshots = [], url } = project;
+
+// The cover doubles as the first gallery frame, so detail pages still show
+// something when a project has no extra screenshots yet.
+const gallery = [image, ...screenshots];
+
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: title,
+  abstract: description,
+  keywords: technology.join(', '),
+  image: new URL(image, Astro.site).href,
+  author: {
+    '@type': 'Person',
+    name: 'Rizki Ramadhan',
+  },
+  ...(url.deploy ? { url: url.deploy } : {}),
+};
+---
+
+<ShellLayout
+  title={`${title} – Rizki Ramadhan | Software Engineer Portfolio`}
+  description={description}
+  schema={projectSchema}
+>
+  <div class="px-4 sm:px-10 py-4 sm:py-4">
+    <!-- Back -->
+    <a
+      href="/project"
+      class="inline-flex items-center gap-x-2 text-[0.875rem] text-[#a8adb3] hover:text-[#e8eaed] transition-colors duration-200 enter enter-1"
+    >
+      <Icon name="ri:arrow-left-line" size={15} />
+      <span>All projects</span>
+    </a>
+
+    <!-- Title -->
+    <h1 class="display-xl max-w-[18ch] mt-6 enter enter-2">{title}</h1>
+
+    <!-- Links -->
+    {(url.deploy || url.source) && (
+      <div class="flex flex-wrap items-center gap-3 mt-7 enter enter-3">
+        {url.deploy && (
+          <a
+            href={url.deploy}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-dark group inline-flex items-center gap-x-2 px-5 py-2.5 rounded-full text-[0.875rem] font-medium"
+          >
+            <Icon name="ri:global-line" size={15} />
+            <span>Visit site</span>
+          </a>
+        )}
+        {url.source && (
+          <a
+            href={url.source}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-ghost inline-flex items-center gap-x-2 px-5 py-2.5 rounded-full border rule text-[0.875rem] font-medium"
+          >
+            <Icon name="ri:github-fill" size={15} />
+            <span>Source code</span>
+          </a>
+        )}
+      </div>
+    )}
+
+    <!-- Description -->
+    <section class="mt-14 reveal">
+      <h2 class="display-md mb-5">Description</h2>
+      <p class="max-w-[62ch] text-[0.9375rem] leading-[1.75] text-[#a8adb3]">
+        {description}
+      </p>
+    </section>
+
+    <!-- Story -->
+    {story && (
+      <section class="mt-12 pt-12 border-t rule reveal">
+        <h2 class="display-md mb-5">Story</h2>
+        <div class="max-w-[62ch] flex flex-col gap-y-4">
+          {story.split('\n\n').map((paragraph) => (
+            <p class="text-[0.9375rem] leading-[1.75] text-[#a8adb3]">{paragraph}</p>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Techstack -->
+    <section class="mt-12 pt-12 border-t rule reveal">
+      <h2 class="display-md mb-5">Techstack</h2>
+      <div class="flex flex-wrap gap-2">
+        {technology.map((tech) => (
+          <span class="chip px-3 py-1 rounded-full text-[0.8125rem]">{tech}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="mt-12 pt-12 border-t rule reveal">
+      <div class="flex items-center justify-between gap-x-4 mb-5">
+        <h2 class="display-md">Screenshots</h2>
+        {gallery.length > 1 && (
+          <div class="flex items-center gap-x-2">
+            <button
+              type="button"
+              data-carousel-prev
+              aria-label="Previous screenshot"
+              class="btn-ghost inline-flex items-center justify-center w-9 h-9 rounded-full border rule disabled:opacity-30 disabled:cursor-not-allowed transition-opacity duration-200"
+            >
+              <Icon name="ri:arrow-left-line" size={16} />
+            </button>
+            <button
+              type="button"
+              data-carousel-next
+              aria-label="Next screenshot"
+              class="btn-ghost inline-flex items-center justify-center w-9 h-9 rounded-full border rule disabled:opacity-30 disabled:cursor-not-allowed transition-opacity duration-200"
+            >
+              <Icon name="ri:arrow-right-line" size={16} />
+            </button>
+          </div>
+        )}
+      </div>
+
+      <!-- Scroll-snap track: horizontal, swipeable on touch, arrow-driven on desktop -->
+      <div
+        data-carousel-track
+        tabindex="0"
+        role="region"
+        aria-label={`${title} screenshots`}
+        class="carousel-track flex gap-x-5 overflow-x-auto snap-x snap-mandatory pb-2"
+      >
+        {gallery.map((shot, i) => (
+          <figure class="card rounded-2xl overflow-hidden snap-start shrink-0 h-104 sm:h-128 max-w-full">
+            <img
+              src={shot}
+              alt={`${title} screenshot ${i + 1}`}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              class="h-full w-auto max-w-full object-contain"
+            />
+          </figure>
+        ))}
+      </div>
+    </section>
+  </div>
+</ShellLayout>
+
+<style>
+  /* Thin, theme-matched scrollbar; the track stays scrollable without arrows */
+  .carousel-track {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+    scroll-behavior: smooth;
+  }
+  .carousel-track::-webkit-scrollbar {
+    height: 6px;
+  }
+  .carousel-track::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .carousel-track::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+  }
+  .carousel-track::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .carousel-track:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 4px;
+    border-radius: 12px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-track {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+
+<script>
+  // Re-runs on every view transition — ClientRouter swaps the DOM without a
+  // full page load, so a load-only listener would leave later pages inert.
+  function initCarousel() {
+    const track = document.querySelector<HTMLElement>('[data-carousel-track]');
+    if (!track) return;
+
+    const prev = document.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const next = document.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    if (!prev || !next) return;
+
+    // Step by one slide, including the flex gap.
+    const step = () => {
+      const slide = track.querySelector<HTMLElement>('figure');
+      if (!slide) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).columnGap || '0') || 0;
+      return slide.offsetWidth + gap;
+    };
+
+    const sync = () => {
+      // 1px tolerance: fractional scroll widths never settle on an exact max.
+      const max = track.scrollWidth - track.clientWidth;
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= max - 1;
+    };
+
+    prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
+    next.addEventListener('click', () => track.scrollBy({ left: step() }));
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  }
+
+  initCarousel();
+  document.addEventListener('astro:page-load', initCarousel);
+</script>

@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 
 interface Props {
+  slug: string;
   title: string;
   description: string;
   technology: string[];
@@ -12,11 +13,12 @@ interface Props {
   };
 }
 
-const { title, description, technology, image, url } = Astro.props;
+const { slug, title, description, technology, image, url } = Astro.props;
 ---
 
 <article class="card rounded-2xl overflow-hidden flex flex-col group">
   <div class="relative overflow-hidden bg-white/5">
+    <a href={`/project/${slug}`} aria-label={`${title} details`}>
     <img
       src={image}
       class="w-full h-[172px] object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
@@ -26,11 +28,16 @@ const { title, description, technology, image, url } = Astro.props;
       width="400"
       height="172"
     />
+    </a>
   </div>
 
   <div class="p-6 flex flex-col flex-1">
     <div class="flex items-start justify-between gap-x-3">
-      <h2 class="font-display text-[0.9375rem] leading-snug capitalize text-[#e8eaed]">{title}</h2>
+      <h2 class="font-display text-[0.9375rem] leading-snug capitalize text-[#e8eaed]">
+        <a href={`/project/${slug}`} class="hover:text-white transition-colors duration-200">
+          {title}
+        </a>
+      </h2>
       <div class="flex gap-x-1.5 shrink-0 pt-1">
         {url.source && (
           <a

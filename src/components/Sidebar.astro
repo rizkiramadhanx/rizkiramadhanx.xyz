@@ -1,23 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-
-// Astro serves pages as directories (/project/), so the URL carries a trailing
-// slash the navLinks entries don't. Normalize both sides before comparing.
-const normalize = (path: string) => path.replace(/\/+$/, '') || '/';
-const pathname = normalize(Astro.url.pathname);
-
-// Detail pages live under their section (/project/kasir-agen), so a nav link
-// stays active for its own subtree. "/" is exact — everything is under it.
-const isActive = (linkPath: string) => {
-  const target = normalize(linkPath);
-  return target === '/' ? pathname === '/' : pathname === target || pathname.startsWith(`${target}/`);
-};
-
-const navLinks = [
-  { pathname: '/', name: 'Home' },
-  { pathname: '/project', name: 'Work' },
-  { pathname: '/now', name: 'About' },
-];
+import NavLinks from './NavLinks.astro';
 
 const contacts = [
   { url: 'https://linkedin.com/in/rizkiramadhanx', label: 'LinkedIn', icon: 'ri:linkedin-box-fill' },
@@ -33,9 +16,10 @@ const CV_URL =
 
 <aside
   transition:name="sidebar"
+  transition:animate="none"
   class="w-full max-w-full min-w-0 glass-panel lg:w-[380px] lg:shrink-0 lg:border-r border-b lg:border-b-0 rule"
 >
-  <div class="px-7 py-5 flex flex-col gap-y-7 min-w-0 enter enter-1 lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto">
+  <div class="px-7 py-5 flex flex-col gap-y-7 min-w-0 lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto">
     <!-- Identity -->
     <div class="flex flex-col gap-y-4">
       <img
@@ -45,7 +29,7 @@ const CV_URL =
         height="640"
         loading="eager"
         decoding="async"
-        class="w-full aspect-square rounded-xl object-cover border rule"
+        class="hidden lg:block w-full aspect-square rounded-xl object-cover border rule"
       />
 
       <div class="min-w-0">
@@ -54,40 +38,8 @@ const CV_URL =
       </div>
  </div>
 
-    <!-- Nav -->
-    <nav aria-label="Main navigation" class="flex gap-1 flex-col">
-      {navLinks.map((link, i) => (
-        <a
-          href={link.pathname}
-          aria-current={isActive(link.pathname) ? 'page' : undefined}
-          class={`group flex items-center gap-x-2 px-3 -mx-3 py-2 rounded-md transition-colors duration-200 ${
-            isActive(link.pathname)
-              ? 'bg-white/[0.07]'
-              : 'hover:bg-white/[0.04]'
-          }`}
-        >
-          <span class="w-3 shrink-0 flex items-center" aria-hidden="true">
-            <span
-              class={`h-[5px] w-[5px] rounded-full transition-all duration-300 ${
-                isActive(link.pathname)
-                  ? 'bg-[#e8eaed] opacity-100 scale-100'
-                  : 'bg-[#e8eaed] opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'
-              }`}
-            ></span>
-          </span>
-          <span
-            class={`text-[0.9375rem] transition-colors duration-300 ${
-              isActive(link.pathname)
-                ? 'text-[#e8eaed] font-medium'
-                : 'text-[#e8eaed] group-hover:text-[#e8eaed]'
-            }`}
-          >
-            {link.name}
-          </span>
-
-        </a>
-      ))}
-    </nav>
+    <!-- Nav — desktop rail; mobile gets the horizontal bar above content -->
+    <NavLinks variant="rail" class="hidden lg:flex" />
 
     <!-- Actions -->
     <div class="flex flex-col gap-y-2.5">

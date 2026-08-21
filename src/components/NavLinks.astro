@@ -1,0 +1,63 @@
+---
+interface Props {
+  /** 'rail' is the vertical desktop sidebar; 'bar' is the horizontal mobile strip */
+  variant?: 'rail' | 'bar';
+  class?: string;
+}
+
+const { variant = 'rail', class: className = '' } = Astro.props;
+
+// Astro serves pages as directories (/project/), so the URL carries a trailing
+// slash the navLinks entries don't. Normalize both sides before comparing.
+const normalize = (path: string) => path.replace(/\/+$/, '') || '/';
+const pathname = normalize(Astro.url.pathname);
+
+// Detail pages live under their section (/project/kasir-agen), so a nav link
+// stays active for its own subtree. "/" is exact — everything is under it.
+const isActive = (linkPath: string) => {
+  const target = normalize(linkPath);
+  return target === '/' ? pathname === '/' : pathname === target || pathname.startsWith(`${target}/`);
+};
+
+const navLinks = [
+  { pathname: '/', name: 'Home' },
+  { pathname: '/project', name: 'Work' },
+  { pathname: '/now', name: 'About' },
+];
+
+const isRail = variant === 'rail';
+---
+
+<nav
+  aria-label="Main navigation"
+  class={`flex gap-1 ${isRail ? 'flex-col' : 'flex-row items-center'} ${className}`}
+>
+  {navLinks.map((link) => (
+    <a
+      href={link.pathname}
+      aria-current={isActive(link.pathname) ? 'page' : undefined}
+      class={`group flex items-center gap-x-2 py-2 rounded-md transition-colors duration-200 ${
+        isRail ? 'px-3 -mx-3' : 'px-3'
+      } ${isActive(link.pathname) ? 'bg-white/[0.07]' : 'hover:bg-white/[0.04]'}`}
+    >
+      {isRail && (
+        <span class="w-3 shrink-0 flex items-center" aria-hidden="true">
+          <span
+            class={`h-[5px] w-[5px] rounded-full transition-all duration-300 ${
+              isActive(link.pathname)
+                ? 'bg-[#e8eaed] opacity-100 scale-100'
+                : 'bg-[#e8eaed] opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'
+            }`}
+          ></span>
+        </span>
+      )}
+      <span
+        class={`text-[0.9375rem] transition-colors duration-300 text-[#e8eaed] ${
+          isActive(link.pathname) ? 'font-medium' : ''
+        }`}
+      >
+        {link.name}
+      </span>
+    </a>
+  ))}
+</nav>

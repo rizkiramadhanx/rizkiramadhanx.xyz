@@ -1,6 +1,7 @@
 ---
 import MainLayout from './MainLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
+import NavLinks from '../components/NavLinks.astro';
 
 interface Props {
   title: string;
@@ -15,6 +16,11 @@ const { title, description, schema } = Astro.props;
   <div class="lg:flex max-w-[1500px] mx-auto min-w-0">
     <Sidebar />
     <div class="flex-1 min-w-0 content-sheet">
+      <!-- Mobile nav: the sidebar rail is hidden below lg, so navigation
+           rides above the content instead. Sticky so it stays reachable. -->
+      <div class="lg:hidden sticky top-0 z-50 glass-panel border-b rule px-4 py-2 overflow-x-auto">
+        <NavLinks variant="bar" />
+      </div>
       <slot />
     </div>
   </div>

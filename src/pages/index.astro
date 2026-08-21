@@ -8,7 +8,7 @@ const stack = [
   { group: 'Languages', items: ['TypeScript', 'JavaScript'] },
   { group: 'Frameworks', items: ['React', 'Next.js', 'Vue', 'Nuxt', 'React Native', 'Flutter'] },
   { group: 'Styling', items: ['Tailwind CSS', 'Chakra UI', 'Ant Design', 'Bootstrap'] },
-  { group: 'Backend & Ops', items: ['NestJS', 'Express', 'REST API', 'Git', 'Jenkins', 'CI/CD'] },
+  { group: 'Backend & Ops', items: ['NestJS', 'Express', 'PostgreSQL', 'REST API', 'Git', 'Jenkins', 'CI/CD'] },
 ];
 
 const faqs = [
@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: 'What is your stack?',
-    a: 'React, Next.js, Vue, Nuxt with TypeScript and Tailwind. React Native and Flutter for mobile. NestJS or Express for backend.',
+    a: 'React, Next.js, Vue, Nuxt with TypeScript and Tailwind. React Native and Flutter for mobile. NestJS or Express with PostgreSQL for backend.',
   },
   {
     q: 'Have you shipped to real users?',
@@ -55,8 +55,9 @@ const faqSchema = {
     </h1>
     <p class="mt-7 max-w-[52ch] text-[0.9375rem] leading-[1.7] text-[#a8adb3] enter enter-2">
       3 years building web and mobile apps with React, Next.js, Vue, React
-      Native and Flutter. I have worked on ERP, HRIS, and payment products used
-      by 26,000+ people, and I ship my own side products.
+      Native and Flutter, backed by NestJS, Express and PostgreSQL. I have
+      worked on ERP, HRIS, and payment products used by 26,000+ people, and I
+      ship my own side products.
     </p>
     <div class="flex flex-wrap items-center gap-x-6 gap-y-3 mt-9 enter enter-3">
       <a
@@ -93,7 +94,7 @@ const faqSchema = {
         'Build web apps with React, Next.js, Vue and Nuxt.',
         'Build mobile apps with React Native and Flutter.',
         'Integrate REST APIs and handle state, auth, and data flow.',
-        'Write backend when needed — NestJS, Express, SQL.',
+        'Write backend when needed — NestJS, Express, PostgreSQL.',
         'Set up CI/CD with Jenkins and GitHub Actions.',
       ].map((item) => (
         <li class="flex gap-x-3 text-[0.9375rem] leading-[1.6] text-[#a8adb3]">
@@ -125,6 +126,7 @@ const faqSchema = {
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal-group">
       {featured.map((project) => (
         <ProjectCard
+          slug={project.slug}
           title={project.title}
           description={project.description}
           image={project.image}
